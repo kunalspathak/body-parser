@@ -16,11 +16,17 @@ describe('bodyParser.json()', function () {
   })
 
   it('should fail gracefully', function (done) {
+    var jsonMessage
+    try {
+      JSON.parse('{"user"')
+    } catch (err) {
+      jsonMessage = err.message
+    }
     request(createServer())
     .post('/')
     .set('Content-Type', 'application/json')
     .send('{"user"')
-    .expect(400, /unexpected end/i, done)
+    .expect(400, jsonMessage, done)
   })
 
   it('should handle Content-Length: 0', function (done) {
@@ -48,11 +54,17 @@ describe('bodyParser.json()', function () {
   })
 
   it('should 400 on malformed JSON', function (done) {
+    var jsonMessage
+    try {
+      JSON.parse('{:')
+    } catch (err) {
+      jsonMessage = err.message
+    }
     request(createServer())
     .post('/')
     .set('Content-Type', 'application/json')
     .send('{:')
-    .expect(400, /unexpected token/i, done)
+    .expect(400, jsonMessage, done)
   })
 
   it('should 400 when invalid content-length', function (done) {
