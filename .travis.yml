@@ -28,7 +28,6 @@ before_install:
   - . ~/.nvs/nvs.sh
   - nvs --version
   
-install:
   # Install selected version of Node.js using NVS
   - nvs add $NODEJS_VERSION
   - nvs use $NODEJS_VERSION
