@@ -3,7 +3,7 @@ dist: trusty
 env:
   global:
   # https://github.com/jasongin/nvs/blob/master/doc/CI.md
-  - NVS_VERSION=1.3.0
+  - NVS_VERSION=1.4.0
   matrix:
   - NODEJS_VERSION=node/0.8
   - NODEJS_VERSION=node/0.10
